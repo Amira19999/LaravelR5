@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use APP\Http\controllers\Mycontroller;
- 
-Route::get('test',[Mycontroller::class,'my_data']);
+use APP\Http\Controllers\MyController;
+use Illuminate\Http\Request;
+Route::get('test',[MyController::class,'my_data']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,13 +35,15 @@ Route::prefix('cars') -> group(function() {
 //     return  redirect('/');
 // });
 
-Route::get('test20',function () {
+Route::get('test20',function () {    //return  form view
     return  view('form1');
 
 });
 
-Route::post('recfrom1',function () {
-    return 'Data received';
+
+
+Route::post('recfrom1',function (Request $request) {   //return  form  action
+    return $request->all();
 })->name ('receivefrom1');
 
 
