@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use APP\Http\Controllers\MyController;
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\Clientcontroller;
 use Illuminate\Http\Request;
-Route::get('test',[MyController::class,'my_data']);
+use App\Http\Controllers\Studentcontroller;
 
+Route::get('insertStudent',[studentcontroller::class, 'store']);   //student
+Route::get('test',[MyController::class,'my_data']);
+Route::get('insertClient',[Clientcontroller::class, 'store']);   
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,6 +50,6 @@ Route::post('recfrom1',function (Request $request) {   //return  form  action
     return $request->all();
 })->name ('receivefrom1');
 
-
-
+Route::get('form', [ClientController::class,'create']);
+Route::post('formResult',[ClientController::class,'store'])->name('formResult');
 
